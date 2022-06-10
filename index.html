@@ -1,97 +1,69 @@
 <!DOCTYPE html>
-<html>
-<style>
-body, html {
-  height: 100%;
-  margin: 0;
-}
-
-.bgimg {
-  background-image: url('./images/real_paichai_poster.png');
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 25px;
-}
-
-.topleft {
-  position: absolute;
-  top: 0;
-  left: 16px;
-}
-
-.bottomleft {
-  position: absolute;
-  bottom: 0;
-  left: 16px;
-}
-
-.middle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-h1 {
-  font-size: 4em;
-}
-
-hr {
-  margin: auto;
-  width: 40%;
-}
-</style>
-<body>
-
-<div class="bgimg">
-  <div class="topleft">
-    <p> <img src="./images/paichai_logo.png" width="50%"> </p>
-  </div>
-  <div class="middle">
-    <h1>COMING SOON</h1>
-    <hr>
-    <b><p id="demo" style="font-size:60px"></p></b>
-  </div>
-  <div class="bottomleft">
-    <p><b>PCU GAME ENGINEERING</b></p>
-  </div>
-</div>
-
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date("Jun 22, 2022 10:00:00").getTime();
-
-// Update the count down every 1 second
-var countdownfunction = setInterval(function() {
-
-  // Get todays date and time
-  var now = new Date().getTime();
-  
-  // Find the distance between now an the count down date
-  var distance = countDownDate - now;
-  
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-  
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(countdownfunction);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
-</script>
-
-</body>
-</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2022 게임공학과 졸업작품 전시회</title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> <!--Replace with your tailwind.css once created-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+    <style>
+        .mainVideo {
+                margin-top:20px;
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%;
+                }
+                
+                .mainVideo iframe {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                }
+    </style>
+      
+</head>
+<body class="bg-gray-200 font-sans leading-normal tracking-normal">
+   <div class="w-full m-0 p-0 bg-cover bg-bottom" style="background-image:url('cover.jpg'); height: 60vh; max-height:460px;">
+         <div class="container max-w-6xl mx-auto pt-16 md:pt-32 text-center break-normal">
+            <!--Title-->
+               <p class="text-black font-extrabold text-3xl md:text-7xl">
+                  👻PAICHAIUNIVERSITY👻
+               </p>
+               <p class="text-xl md:text-2xl text-gray-500">2022 게임공학과 온라인 졸업작품 전시회</p>
+         </div>
+      </div>
+      <div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
+          <div class="mainVideo">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/WEG5kBjfFpM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="p-3 lg:mt-0 rounded shadow bg-white" style="margin-top:50px;">
+            <form>
+                <div class="md:w-3/5">
+                    <label class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4" for="my-textfield" style="margin-left: 40px; margin-top: 20px;">
+                        실시간 댓글 창
+                    </label>
+                </div>
+                <div class="md:flex mb-6">
+                    <div class="md:w-full" style="margin-top: 20px; margin-left: 40px;">
+                        <input class="form-input block w-full h-full bg-gray-200" id="my-textfield" type="text" value="">
+                    </div>
+                    <div class="md:w-1/6" style="margin-left: 10px; margin-top: 20px;">
+                        <button class="shadow bg-blue-700 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded" type="button">
+                            등록
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-blue-100" style="margin-bottom: 100px;">
+            <form>
+                <div class="md:flex mb-6" style="margin-bottom: 800px;">
+                </div>
+            </form>
+        </div>
+    </body>
+    </html>
