@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>2022 게임공학과 졸업작품 전시회</title>
     <meta name="author" content="name">
@@ -10,65 +10,40 @@
     <meta name="keywords" content="keywords,here">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
-    <script src="/js/index.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
     <style>
-        .mainVideo {
-                margin-top:20px;
-                position: relative;
-                width: 100%;
-                padding-bottom: 56.25%;
-                }
-                
-                .mainVideo iframe {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                }
-
-        .chat {
-                width: 90%;
-                margin: auto;
-                background-color: lightblue;
-                border-radius: 5px;
-                margin-top: 10px;
-                }
-
+        body {
+            background-image : url('겜공 포스터.png');
+        }
     </style>
-      
 </head>
-<body class="bg-gray-200 font-sans leading-normal tracking-normal">
-    <div class="w-full m-0 p-0 bg-bottom" style="height: 60vh; max-height:460px; background-color: lightgrey;">
-         <div class="container max-w-6xl mx-auto pt-16 md:pt-32 text-center break-normal">
-            <!--Title-->
-               <p class="text-black font-extrabold text-3xl md:text-7xl">
-                  👻PAICHAIUNIVERSITY👻
-               </p>
-               <p class="text-xl md:text-2xl text-gray-500">2022 게임공학과 온라인 졸업작품 전시회</p>
-         </div>
-      </div>
-      <div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
-          <div class="mainVideo">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/WEG5kBjfFpM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="p-3 lg:mt-0 rounded shadow bg-white" style="margin-top:50px; margin-bottom: 50px; bottom: 500px;" id="chat">
-            <form>
-                <div class="md:w-3/5">
-                    <label class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4" for="my-textfield" style="margin-left: 40px; margin-top: 20px;">
-                        실시간 댓글 창
-                    </label>
+<body class="font-sans leading-normal tracking-normal">
+    <div class="w-full m-0 p-0 bg-bottom" style="height: 60vh; max-height:460px;">
+        <div class="container max-w-6xl mx-auto pt-16 md:pt-32 text-center break-normal">
+            <p class="text-white font-extrabold text-3xl md:text-7xl" style="margin-bottom: 10px;">
+                👻PAICHAIUNIVERSITY👻
+            </p>
+            <p class="text-xl md:text-2xl text-white">2022 게임공학과 온라인 졸업작품 전시회</p>
+            <div class="w-full m-0 p-0 bg-bottom" style="margin-top: 100px;">
+                <p class="text-white md:text-2xl">
+                    ↓바로가기 링크↓
+                </p>
+            </div>
+            <div class="md:w-full" style="margin-top: 20px;">
+                <div class="md:w-full">
+                    <button onClick="window.open('https://www.youtube.com/watch?v=rkvdVhugTcc')" class="shadow bg-red-700 hover:bg-red-500 focus:shadow-outline focus:outline-none text-white font-bold text-3xl py-8 px-10 rounded" style="margin-right: 50px;" type="button">
+                        YouTube
+                    </button>
+                    <button onclick="window.open('https://pcu-ac-kr.zoom.us/j/93619127954?pwd=eGViem1BRjl0Tm9mUUxDSWpOOHpuZz09')" class="shadow bg-blue-700 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold text-3xl py-8 px-14 rounded" type="button">
+                        Zoom
+                    </button>
                 </div>
-                <div class="md:flex mb-6">
-                    <div class="md:w-full" style="margin-top: 20px; margin-left: 40px;">
-                        <input class="comment-text w-full h-full bg-gray-200" type="text" id="test">
-                    </div>
-                    <div class="md:w-1/6" style="margin-left: 10px; margin-top: 20px;">
-                        <button onclick="send()" class="shadow bg-blue-700 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded">
-                            등록
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
+            <div style="position: absolute; left: 20px; bottom: 20px;">
+                <p class="text-white font-bold md:text-2xl">
+                    PCU GAME ENGINEERING
+                </p>
+            </div>
         </div>
-    </body>
-    </html>
+     </div>
+</body>
+</html>
