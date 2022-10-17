@@ -18,7 +18,8 @@ function Renderer(canvasName, vertSrc, fragSrc) {
 
     const angle = 60;
     let u_projection;
-    let u_mvMatrix;
+    let u_viewMatrix;
+    let u_worldMatrix;
     let cubeVBO;
     let cubeIBO;
     let w;
@@ -256,7 +257,7 @@ function Renderer(canvasName, vertSrc, fragSrc) {
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
             gl.generateMipmap(gl.TEXTURE_2D);
 
-            gl.uniformMatrix4fv(u_mvMatrix, false, mvMatrix);
+            gl.uniformMatrix4fv(u_viewMatrix, false, mvMatrix);
 
             // 카메라 처리
             gl.uniformMatrix4fv(u_projection, false, projectionMatrix);
@@ -473,7 +474,8 @@ function Renderer(canvasName, vertSrc, fragSrc) {
         // glEnableVertexAttribArray()
 
         u_projection = gl.getUniformLocation(progID, 'uProjectionMatrix');
-        u_mvMatrix = gl.getUniformLocation(progID, 'uMVMatrix');
+        u_viewMatrix = gl.getUniformLocation(progID, 'uViewMatrix');
+        u_worldMatrix = gl.getUniformLocation(progID, 'uWorldMatrix');
 
         vertexLoc = gl.getAttribLocation(progID, 'inputPosition');
         //colorLoc = gl.getAttribLocation(progID, 'inputColor');
