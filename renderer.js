@@ -186,12 +186,23 @@ function Renderer(canvasName, vertSrc, fragSrc) {
         mat4.identity(mvMatrix);
         //mat4.rotate(mvMatrix, rad(180), [0, 0, 1], mvMatrix);
         //mat4.translate(mvMatrix, [5, 0, 0], mvMatrix);
-        const rotMatData = document.getElementById('code_rot_matrix').value.toString();
-        const userMatrix = [];
+        const worldMatData = document.getElementById('code_rot_matrix').value.toString();
+        let userMatrix = [];
 
-        for (let i = 0; i < rotMatData.length; i++) {
-            if (rotMatData[i] != ' ') if (rotMatData[i] != '\n') userMatrix.push(rotMatData[i]);
+        let splicedWorldData = worldMatData.split('\n');
+
+        for (let i = 0; i < splicedWorldData.length; i++) {
+            if (splicedWorldData != '') {
+                const data = splicedWorldData[i].split(' ');
+                if (i < 4) {
+                    userMatrix = [...userMatrix, data[0], data[1], data[2], data[3]];
+                }
+            }
         }
+
+        // for (let i = 0; i < rotMatData.length; i++) {
+        //     if (rotMatData[i] != ' ') if (rotMatData[i] != '\n') userMatrix.push(rotMatData[i]);
+        // }
         //mat4.lookAt([8, 5, 2], [0, 0, 0], [0, 1, 0], mvMatrix);
 
         const radius = 50;
