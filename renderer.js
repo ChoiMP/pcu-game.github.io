@@ -132,7 +132,6 @@ function Renderer(canvasName, vertSrc, fragSrc) {
         let position = [];
         let normal = [];
         let texcoord = [];
-        let indices = [];
 
         data.position.forEach((i) => {
             position = [...position, i[0], i[1], i[2]];
@@ -144,10 +143,6 @@ function Renderer(canvasName, vertSrc, fragSrc) {
 
         data.texcoord.forEach((i) => {
             texcoord = [...texcoord, i[0], i[1]];
-        });
-
-        data.indices.forEach((i) => {
-            indices = [...indices, i, i + 1, i + 2];
         });
 
         this.canvas = window.document.getElementById(canvasName);
@@ -184,15 +179,9 @@ function Renderer(canvasName, vertSrc, fragSrc) {
         var t0 = position;
         cubeVBO = this.createBuffer(t0, 3);
 
-        console.log(cubeVBO.numItem);
-        // cubeIBO = this.createElementBuffer([
-        //     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
-        //     34, 35,
-        // ]);
         cubeIBO = this.createElementBuffer(data.indices);
-        //cubeIBO = this.createBuffer()
 
-        const mvMatrix = mat4.create();
+        let mvMatrix = mat4.create();
 
         mat4.identity(mvMatrix);
         //mat4.rotate(mvMatrix, rad(180), [0, 0, 1], mvMatrix);
@@ -211,13 +200,17 @@ function Renderer(canvasName, vertSrc, fragSrc) {
 
         let cameraMatrix = [Math.cos(0), Math.sin(0), 0, 0, -Math.sin(0), Math.cos(0), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
         mat4.translate(cameraMatrix, [0, 0, radius * 1.5], cameraMatrix);
+        //const cameraPosition = [cameraMatrix[12], cameraMatrix[13], cameraMatrix[14]];
+        const cameraPosition = [0, 0, radius];
 
-        const cameraPosition = [cameraMatrix[12], cameraMatrix[13], cameraMatrix[14]];
-
+        //view matrix
         mat4.lookAt(cameraPosition, fPosition, [0, 1, 0], mvMatrix);
         mat4.translate(mvMatrix, [30, 0, 0.0], mvMatrix);
-        mat4.multiply(mvMatrix, userMatrix, mvMatrix);
 
+        //world matrix
+        // mat4.multiply(worldMatrix, mat4.identity(mat4.create()), worldMatrix);
+
+        //projection matrix
         const projectionMatrix = mat4.create();
         mat4.perspective(angle, w / h, 0.1, 120.0, projectionMatrix);
 
@@ -238,10 +231,11 @@ function Renderer(canvasName, vertSrc, fragSrc) {
 
         //texture
         const texcoordBuffer = gl.createBuffer();
+
+        gl.enableVertexAttribArray(colorLoc);
         gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texcoord), gl.STATIC_DRAW);
-        gl.enableVertexAttribArray(colorLoc);
-        gl.vertexAttribPointer(colorLoc, 2, gl.FLOAT, true, 0, 0);
+        gl.vertexAttribPointer(colorLoc, 2, gl.FLOAT, false, 0, 0);
 
         const texture = gl.createTexture();
         gl.activeTexture(gl.TEXTURE0 + 0);
@@ -257,10 +251,48 @@ function Renderer(canvasName, vertSrc, fragSrc) {
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
             gl.generateMipmap(gl.TEXTURE_2D);
 
-            gl.uniformMatrix4fv(u_viewMatrix, false, mvMatrix);
+            //view matrix
+            const viewMatData = document.getElementById('view_matrix').value.toString();
+            let user_viewMatrix = [];
 
-            // 카메라 처리
-            gl.uniformMatrix4fv(u_projection, false, projectionMatrix);
+            let splicedData = viewMatData.split('\n');
+
+            for (let i = 0; i < splicedData.length; i++) {
+                //if (viewMatData[i] != ' ') if (viewMatData[i] != '\n') user_viewMatrix.push(viewMatData[i]);
+                if (splicedData != '') {
+                    const data = splicedData[i].split(' ');
+                    if (i < 4) {
+                        user_viewMatrix = [...user_viewMatrix, data[0], data[1], data[2], data[3]];
+                    }
+                }
+            }
+            //gl.uniformMatrix4fv(u_viewMatrix, false, mvMatrix);
+            gl.uniformMatrix4fv(u_viewMatrix, false, user_viewMatrix);
+
+            //world matrix
+            gl.uniformMatrix4fv(u_worldMatrix, false, userMatrix);
+
+            //projection matrix
+            const projMatData = document.getElementById('proj_matrix').value.toString();
+            let user_projMatrix = [];
+
+            splicedData = projMatData.split('\n');
+
+            for (let i = 0; i < splicedData.length; i++) {
+                //if (viewMatData[i] != ' ') if (viewMatData[i] != '\n') user_viewMatrix.push(viewMatData[i]);
+                if (splicedData != '') {
+                    const data = splicedData[i].split(' ');
+                    if (i < 4) {
+                        user_projMatrix = [...user_projMatrix, data[0], data[1], data[2], data[3]];
+                    }
+                }
+            }
+            console.log(user_projMatrix);
+            //gl.uniformMatrix4fv(u_projection, false, projectionMatrix);
+            gl.uniformMatrix4fv(u_projection, false, user_projMatrix);
+
+            console.log(mvMatrix);
+            console.log(projectionMatrix);
 
             //Lighting
             const lightingData = document.getElementById('code_lighting').value.toString();
@@ -270,8 +302,6 @@ function Renderer(canvasName, vertSrc, fragSrc) {
                 if (lightingData[i] != ' ') if (lightingData[i] != '\n') lightVec.push(lightingData[i]);
             }
             gl.uniform3fv(reverseLightDirectionLocation, vec3.normalize(lightVec));
-
-            gl.bindTexture(gl.TEXTURE_2D, texture);
 
             // index
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIBO);
@@ -342,14 +372,6 @@ function Renderer(canvasName, vertSrc, fragSrc) {
         const lines = text.split('\n');
         for (let lineNo = 0; lineNo < lines.length; ++lineNo) {
             const line = lines[lineNo].trim();
-            if (line == 's 2') {
-                return {
-                    position: objPositions,
-                    texcoord: objTexcoords,
-                    normal: objNormals,
-                    indices: indices,
-                };
-            }
             if (line === '' || line.startsWith('#')) {
                 continue;
             }
