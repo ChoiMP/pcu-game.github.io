@@ -27,38 +27,31 @@
                 <p class="text-white md:text-2xl">
                     ↓남은 시간↓
                 </p>
-                <script>var now = new Date();
-    var open = new Date(2021,02,11,11,00,00);
-  
-    var nt = now.getTime();
-    var ot = open.getTime();
-  
-   if(nt<ot){ 
-     sec = parseInt(ot - nt) / 1000;
-     hour = parseInt(sec/60/60);
-     sec = (sec - (hour*60*60));
-     min = parseInt(sec/60);
-     sec = parseInt(sec-(min*60));
-  
-     if(hour<10){hour="0"+hour;}
-     if(min<10){min="0"+min;}
-     if(sec<10){sec="0"+sec;}
-      $("#d-day-hour").html(hour);
-      $("#d-day-min").html(min);
-      $("#d-day-sec").html(sec);
-   } else{
-    $("#d-day-hour").html('00');
-    $("#d-day-min").html('00');
-    $("#d-day-sec").html('00');
-   }
-  
-  setInterval(remaindTime,1000);</script>
-                  <div class="time">
-    <span class="w-full m-0 p-0 bg-bottom" style="margin-top: 100px;" id="d-day-hour">00</span>
-    <span class="col">:</span>
-    <span class="w-full m-0 p-0 bg-bottom" style="margin-top: 100px;" id="d-day-min">00</span>
-    <span class="col">:</span>
-    <span class="w-full m-0 p-0 bg-bottom" style="margin-top: 100px;" id="d-day-sec">00</span>
+                <script>function updateTimer() {
+    const future = Date.parse("2024/01/01 00:00:00");
+    const now = new Date();
+    const diff = future - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const mins = Math.floor(diff / (1000 * 60));
+    const secs = Math.floor(diff / 1000);
+
+    const d = days;
+    const h = hours - days * 24;
+    const m = mins - hours * 60;
+    const s = secs - mins * 60;
+
+    document.getElementById("timer")
+     .innerHTML =
+     '<div>' + d + '<span>Days</span></div>' +
+     '<div>' + h + '<span>Hours</span></div>' +
+     '<div>' + m + '<span>Minutes</span></div>' +
+     '<div>' + s + '<span>Seconds</span></div>';
+}
+
+setInterval(updateTimer, 1000);</script>
+                  <div id="time">
   </div>
             </div>
             
