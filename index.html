@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>2024 게임공학과 졸업작품 전시회</title>
     <meta name="author" content="name">
@@ -12,87 +12,95 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
     <style>
         body {
-            background-image : url('포스터2024.jpg');
+            background-image: url('포스터2024.jpg');
+            background-size: cover;
+        }
+        .text-bg {
+            background: rgba(0, 0, 0, 0.5); /* 반투명 배경색 */
+            padding: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body class="font-sans leading-normal tracking-normal">
     <div class="w-full m-0 p-0 bg-bottom" style="height: 60vh; max-height:460px;">
         <div class="container max-w-6xl mx-auto pt-16 md:pt-32 text-center break-normal">
-            <p class="text-white font-extrabold text-3xl md:text-7xl" style="margin-bottom: 10px;">
-                👻PAICHAI UNIVERSITY👻
-            </p>
-            <p class="text-xl md:text-2xl text-white">2024 게임공학과 졸업작품 전시회</p>
-            
-            <br>
-			<p class="text-xl md:text-2xl text-white">시간: 2024년 06월 12일 수요일</p>
-			<p class="text-xl md:text-2xl text-white">발표장소: 우남관 W106호</p>
-			<p class="text-xl md:text-2xl text-white">전시장소: 정보과학관 1층 AISW 창의융합빌리지</p>
-			<p class="text-xl md:text-2xl text-white"><a>https://gamepcu.synology.me:5689/2024/</a></p>
-            
-            <div class="w-full m-0 p-0 bg-bottom" style="margin-top: 100px;">
-                <p class="text-white md:text-2xl">
-                    ↓남은 시간↓
+            <div class="text-bg">
+                <p class="text-white font-extrabold text-3xl md:text-7xl" style="margin-bottom: 10px;">
+                    👻PAICHAI UNIVERSITY👻
                 </p>
-                <script>function updateTimer() {
-    const future = Date.parse("2024/06/12 10:00:00");
-    const now = new Date();
-    const diff = future - now;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const mins = Math.floor(diff / (1000 * 60));
-    const secs = Math.floor(diff / 1000);
-
-    const d = days;
-    const h = hours - days * 24;
-    const m = mins - hours * 60;
-    const s = secs - mins * 60;
-
-    document.getElementById("timer")
-     .innerHTML =
-     '<div>' + d + '<span>Days</span></div>' +
-     '<div>' + h + '<span>Hours</span></div>' +
-     '<div>' + m + '<span>Minutes</span></div>' +
-     '<div>' + s + '<span>Seconds</span></div>';
-}
-
-setInterval(updateTimer, 1000);</script>
-                <style>
-                    #timer {
-    font-size: 3em;
-    font-weight: 100;
-    color: white;
-    padding: 20px;
-    width: 700px;
-    color: white;
-}
-#timer div span {
-    color: #ffffff;
-    display: block;
-    margin-top: 15px;
-    font-size: .35em;
-    font-weight: 400;
-}
-#timer div {
-    display: inline-block;
-    min-width: 90px;
-    padding: 15px;
-    background: #020b43;
-    border-radius: 10px;
-    border: 2px solid #030d52;
-    margin: 15px;
-}</style>
-                  <center><div id="timer">
-                      </div></center>
+                <p class="text-xl md:text-2xl text-white">2024 게임공학과 졸업작품 전시회</p>
             </div>
-            
+            <br>
+            <div class="text-bg">
+                <p class="text-xl md:text-2xl text-white">시간: 2024년 06월 12일 수요일</p>
+                <p class="text-xl md:text-2xl text-white">발표장소: 우남관 W106호</p>
+                <p class="text-xl md:text-2xl text-white">전시장소: 정보과학관 1층 AISW 창의융합빌리지</p>
+                <p class="text-xl md:text-2xl text-white"><a href="https://gamepcu.synology.me:5689/2024/" class="text-blue-400">https://gamepcu.synology.me:5689/2024/</a></p>
+            </div>
+            <div class="w-full m-0 p-0 bg-bottom" style="margin-top: 100px;">
+                <div class="text-bg">
+                    <p class="text-white md:text-2xl">↓남은 시간↓</p>
+                    <script>
+                        function updateTimer() {
+                            const future = Date.parse("2024/06/12 10:00:00");
+                            const now = new Date();
+                            const diff = future - now;
+
+                            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor(diff / (1000 * 60 * 60));
+                            const mins = Math.floor(diff / (1000 * 60));
+                            const secs = Math.floor(diff / 1000);
+
+                            const d = days;
+                            const h = hours - days * 24;
+                            const m = mins - hours * 60;
+                            const s = secs - mins * 60;
+
+                            document.getElementById("timer").innerHTML =
+                                '<div>' + d + '<span>Days</span></div>' +
+                                '<div>' + h + '<span>Hours</span></div>' +
+                                '<div>' + m + '<span>Minutes</span></div>' +
+                                '<div>' + s + '<span>Seconds</span></div>';
+                        }
+
+                        setInterval(updateTimer, 1000);
+                    </script>
+                    <style>
+                        #timer {
+                            font-size: 3em;
+                            font-weight: 100;
+                            color: white;
+                            padding: 20px;
+                            width: 700px;
+                            color: white;
+                        }
+                        #timer div span {
+                            color: #ffffff;
+                            display: block;
+                            margin-top: 15px;
+                            font-size: .35em;
+                            font-weight: 400;
+                        }
+                        #timer div {
+                            display: inline-block;
+                            min-width: 90px;
+                            padding: 15px;
+                            background: #020b43;
+                            border-radius: 10px;
+                            border: 2px solid #030d52;
+                            margin: 15px;
+                        }
+                    </style>
+                    <center><div id="timer"></div></center>
+                </div>
+            </div>
             <div style="position: absolute; left: 20px; bottom: 20px;">
-                <p class="text-white font-bold md:text-2xl">
-                    PCU GAME ENGINEERING
-                </p>
+                <div class="text-bg">
+                    <p class="text-white font-bold md:text-2xl">PCU GAME ENGINEERING</p>
+                </div>
             </div>
         </div>
-     </div>
+    </div>
 </body>
 </html>
